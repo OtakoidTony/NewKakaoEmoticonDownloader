@@ -48,6 +48,7 @@ namespace NewKakaoEmoticonDownloader
         private void printListView()
         {
             searchResult = KakaoEmoticon.Search(textBox1.Text)["items"];
+            listView1.Items.Clear();
             foreach (var i in searchResult)
             {
                 String[] aa = { (String)i["title"], (String)i["artist"], (String)i["encoded"] };
