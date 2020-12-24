@@ -107,12 +107,9 @@ namespace NewKakaoEmoticonDownloader
                     WebClient webClient = new WebClient();
                     
                     webClient.DownloadFileAsync(new Uri(result[i]), folderPath + "\\" + (i + ".png"));
-                    webClient.DownloadProgressChanged += (sender1, e1) =>
+                    webClient.DownloadFileCompleted += (s1, e1) =>
                     {
-                        if (e1.ProgressPercentage == 100)
-                        {
-                            progressBar1.PerformStep();
-                        }
+                        progressBar1.PerformStep();
                     };
                 }
             }
