@@ -23,30 +23,26 @@
         #region Windows Form 디자이너에서 생성한 코드
 
         /// <summary>
-        /// 디자이너 지원에 필요한 메서드입니다. 
-        /// 이 메서드의 내용을 코드 편집기로 수정하지 마세요.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
             this.listView1 = new System.Windows.Forms.ListView();
-            this.titleColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.artistColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.encodedColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.titleColumnHeader = new System.Windows.Forms.ColumnHeader();
+            this.artistColumnHeader = new System.Windows.Forms.ColumnHeader();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.searchButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // listView1
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.titleColumnHeader,
-            this.artistColumnHeader,
-            this.encodedColumnHeader});
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {this.titleColumnHeader, this.artistColumnHeader});
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(11, 42);
             this.listView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -69,11 +65,6 @@
             this.artistColumnHeader.Text = "제작자";
             this.artistColumnHeader.Width = 120;
             // 
-            // encodedColumnHeader
-            // 
-            this.encodedColumnHeader.Text = "아이템 코드";
-            this.encodedColumnHeader.Width = 80;
-            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(11, 12);
@@ -81,6 +72,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(434, 25);
             this.textBox1.TabIndex = 1;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // searchButton
@@ -121,7 +113,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(229, 45);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Kakao Emoticon Downloader v2.0\r\n\r\nAuthor » Rojiku\r\n";
+            this.label1.Text = "Kakao Emoticon Downloader v2.1\r\n\r\nAuthor » Rojiku\r\n";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // button1
@@ -151,27 +143,25 @@
             this.MaximumSize = new System.Drawing.Size(820, 459);
             this.MinimumSize = new System.Drawing.Size(820, 459);
             this.Name = "Form1";
-            this.Text = "Kakao Emoticon Downloader v2.0";
+            this.Text = "Kakao Emoticon Downloader v2.1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDoubleClick);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
-        #endregion
-
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader titleColumnHeader;
         private System.Windows.Forms.ColumnHeader artistColumnHeader;
-        private System.Windows.Forms.ColumnHeader encodedColumnHeader;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button searchButton;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button searchButton;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ColumnHeader titleColumnHeader;
+
+        #endregion
     }
 }
 

@@ -31,9 +31,11 @@ namespace NewKakaoEmoticonDownloader
         {
 
         }
-        public JToken searchResult;
+        public List<SearchedEmoticonInfo> searchResult;
         public int selectedIndex = -1;
 
+        private string TitleUrl;
+        
         private void whenSelect()
         {
             if (listView1.SelectedItems.Count == 1)
@@ -41,17 +43,18 @@ namespace NewKakaoEmoticonDownloader
                 ListView.SelectedListViewItemCollection items = listView1.SelectedItems;
                 ListViewItem lvItem = items[0];
                 selectedIndex = listView1.Items.IndexOf(lvItem);
-                pictureBox1.Load(searchResult[selectedIndex]["titleDetailUrl"].ToString());
+                pictureBox1.Load(searchResult[selectedIndex].Thumbnail);
+                TitleUrl = searchResult[selectedIndex].TitleUrl;
             }
         }
         
         private void printListView()
         {
-            searchResult = KakaoEmoticon.Search(textBox1.Text)["items"];
+            searchResult = KakaoEmoticonCrawler.Search(textBox1.Text);
             listView1.Items.Clear();
             foreach (var i in searchResult)
             {
-                String[] aa = { (String)i["title"], (String)i["artist"], (String)i["encoded"] };
+                String[] aa = { i.Title, i.Author};
                 ListViewItem newitem = new ListViewItem(aa);
                 listView1.Items.Add(newitem);
             }
@@ -143,10 +146,9 @@ namespace NewKakaoEmoticonDownloader
                     ListView.SelectedListViewItemCollection items = listView1.SelectedItems;
                     ListViewItem lvItem = items[0];
                     string title = lvItem.SubItems[0].Text;
-                    string itemcode = lvItem.SubItems[2].Text;
                     string folderPath = Application.StartupPath + "\\" + title;
 
-                    string[] result = KakaoEmoticon.GetThumbUrl(itemcode);
+                    string[] result = KakaoEmoticonCrawler.GetThumbUrls(TitleUrl);
                     int size = result.Length;
                     DirectoryInfo di = new DirectoryInfo(folderPath);
                     if (di.Exists == false)
@@ -166,21 +168,14 @@ namespace NewKakaoEmoticonDownloader
                 }
             }
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
     }
     public class KakaoEmoticon
     {
-        public static JObject Search(string searchText)
-        {
-            var client = new RestClient("https://e.kakao.com/search?q=" + searchText);
-            client.Timeout = -1;
-            var request = new RestRequest(Method.GET);
-            var response = client.Execute(request);
-            var httpDoc = new HtmlAgilityPack.HtmlDocument();
-            httpDoc.LoadHtml(response.Content);
-            var nodeCol = httpDoc.DocumentNode.SelectNodes("//*[@id=\"mArticle\"]/div[2]");
-            var searchResult = nodeCol[0].Attributes["data-react-props"].Value;
-            return JObject.Parse(searchResult.Replace("&quot;", "\""));
-        }
 
         public static JObject Info(string titleUrl)
         {
