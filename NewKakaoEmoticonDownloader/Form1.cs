@@ -101,7 +101,7 @@ namespace NewKakaoEmoticonDownloader
                 progressBar1.Maximum = size;
                 progressBar1.Step = 1;
                 progressBar1.Value = 0;
-                Debug.WriteLine("Hello, world!");
+                
                 for (int i = 0; i < size; i++)
                 {
                     WebClient webClient = new WebClient();
