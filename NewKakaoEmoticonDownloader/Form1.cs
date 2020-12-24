@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using Newtonsoft.Json.Linq;
 using HtmlAgilityPack;
 using System.IO;
 using System.Net;
+using System.Threading;
 
 namespace NewKakaoEmoticonDownloader
 {
@@ -81,31 +83,37 @@ namespace NewKakaoEmoticonDownloader
         {
             if (listView1.SelectedItems.Count == 1)
             {
-                using (WebClient webClient = new WebClient())
+                ListView.SelectedListViewItemCollection items = listView1.SelectedItems;
+                ListViewItem lvItem = items[0];
+                string title = lvItem.SubItems[0].Text;
+                string folderPath = Application.StartupPath + "\\" + title;
+
+                string[] result = KakaoEmoticonCrawler.GetThumbUrls(TitleUrl);
+                int size = result.Length;
+                DirectoryInfo di = new DirectoryInfo(folderPath);
+                if (di.Exists == false)
                 {
-                    ListView.SelectedListViewItemCollection items = listView1.SelectedItems;
-                    ListViewItem lvItem = items[0];
-                    string title = lvItem.SubItems[0].Text;
-                    string folderPath = Application.StartupPath + "\\" + title;
+                    di.Create();
+                }
 
-                    string[] result = KakaoEmoticonCrawler.GetThumbUrls(TitleUrl);
-                    int size = result.Length;
-                    DirectoryInfo di = new DirectoryInfo(folderPath);
-                    if (di.Exists == false)
+                progressBar1.Style = ProgressBarStyle.Continuous;
+                progressBar1.Minimum = 0;
+                progressBar1.Maximum = size;
+                progressBar1.Step = 1;
+                progressBar1.Value = 0;
+                Debug.WriteLine("Hello, world!");
+                for (int i = 0; i < size; i++)
+                {
+                    WebClient webClient = new WebClient();
+                    
+                    webClient.DownloadFileAsync(new Uri(result[i]), folderPath + "\\" + (i + ".png"));
+                    webClient.DownloadProgressChanged += (sender1, e1) =>
                     {
-                        di.Create();
-                    }
-
-                    progressBar1.Style = ProgressBarStyle.Continuous;
-                    progressBar1.Minimum = 0;
-                    progressBar1.Maximum = size;
-                    progressBar1.Step = 1;
-                    progressBar1.Value = 0;
-                    for (int i = 0; i < size; i++)
-                    {
-                        webClient.DownloadFile(result[i], folderPath + "\\" + (i + ".png"));
-                        progressBar1.PerformStep();
-                    }
+                        if (e1.ProgressPercentage == 100)
+                        {
+                            progressBar1.PerformStep();
+                        }
+                    };
                 }
             }
         }
