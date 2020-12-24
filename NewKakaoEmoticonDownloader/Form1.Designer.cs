@@ -51,7 +51,6 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             this.listView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listView1_KeyDown);
             this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseDoubleClick);
             // 
@@ -72,7 +71,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(434, 25);
             this.textBox1.TabIndex = 1;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // searchButton
@@ -114,7 +112,6 @@
             this.label1.Size = new System.Drawing.Size(229, 45);
             this.label1.TabIndex = 5;
             this.label1.Text = "Kakao Emoticon Downloader v2.1\r\n\r\nAuthor » Rojiku\r\n";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // button1
             // 
@@ -144,8 +141,6 @@
             this.MinimumSize = new System.Drawing.Size(820, 459);
             this.Name = "Form1";
             this.Text = "Kakao Emoticon Downloader v2.1";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDoubleClick);
             ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
