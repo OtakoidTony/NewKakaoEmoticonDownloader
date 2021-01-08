@@ -7,7 +7,7 @@ namespace NewKakaoEmoticonDownloader
 {
     public class KakaoEmoticonCrawler
     {
-        public static List<SearchedEmoticonInfo> Search(String query)
+        public static List<SearchedEmoticonInfo> Search(string query)
         {
             var client = new RestClient("https://e.kakao.com/api/v1/search?query=" + query);
             client.Timeout = -1;
