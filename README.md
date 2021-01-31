@@ -1,4 +1,4 @@
-# NewKakaoEmoticonDownloader
+# New Kakao Emoticon Downloader
 
 경고! 이 프로그램은 이미 구매한 이모티콘에 대하여 타 SNS에서 사용할 수 있게 하기 위해 개발된 프로그램입니다.  
 부정적인 사용은 저작권법에 의거하여 처벌될 수 있으며, 본 소프트웨어의 사용에 있어 모든 책임은 사용자에게 있음을 알립니다.
